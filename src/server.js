@@ -55,6 +55,11 @@ app.get("/api/health", (_req, res) => {
   res.json({ data: { status: "ok", database: isDatabaseReady ? "connected" : "disconnected" } });
 });
 
+// Root route - Render health check
+app.get("/", (_req, res) => {
+  res.json({ message: "Jukwaa Backend API is running", status: "ok" });
+});
+
 app.use("/api", (req, res, next) => {
   if (req.path === "/health" || isDatabaseReady) {
     return next();
